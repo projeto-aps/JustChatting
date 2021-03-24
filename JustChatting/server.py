@@ -25,7 +25,7 @@ def handle(cliente):
             clientes.remove(cliente)
             cliente.close()
             nickname = nicknames[index]
-            broadcast(f'{nickname} saiu do chat!\n'.encode('ascii'))
+            broadcast(f'{nickname} saiu do chat!\n'.encode('utf-8'))
             nicknames.remove(nickname)
             break
 
@@ -34,14 +34,14 @@ def receive():
         cliente, endereco = server.accept()
         print(f'Conectado com {str(endereco)}')
 
-        cliente.send('NICK'.encode('ascii'))
-        nickname = cliente.recv(1024).decode('ascii')
+        cliente.send('NICK'.encode('utf-8'))
+        nickname = cliente.recv(1024).decode('utf-8')
         nicknames.append(nickname)
         clientes.append(cliente)
 
         print(f'Nickname do cliente é {nickname}')
-        broadcast(f'{nickname} entrou no chat!\n'.encode('ascii'))
-        cliente.send('Conectado ao servidor!\n'.encode('ascii'))
+        broadcast(f'{nickname} entrou no chat!\n'.encode('utf-8'))
+        cliente.send('Conectado ao servidor!\n'.encode('utf-8'))
 
         thread = threading.Thread(target=handle,args=(cliente,))
         thread.start()
