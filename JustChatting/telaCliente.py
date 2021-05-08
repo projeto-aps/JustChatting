@@ -4,10 +4,10 @@ import tkinter
 import tkinter.scrolledtext
 from tkinter import simpledialog
 
-host = input('Insira o IP: ')
-port = 25143
-# host = 'localhost'
-# port = 3001
+# host = input('Insira o IP: ')
+# port = 25143
+host = 'localhost'
+port = 3001
 
 class Cliente:
     def __init__(self, host, port):
@@ -76,6 +76,7 @@ class Cliente:
                     self.sock.send(self.nickname.encode('utf-8'))
                 else:
                     if self.gui_done:
+                        
                         self.text_area.config(state='normal')
                         self.text_area.insert('end',mensagem)
                         self.text_area.yview('end')
