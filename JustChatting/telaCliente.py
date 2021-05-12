@@ -37,7 +37,7 @@ class Cliente:
         self.lblChat.config(font=('Arial',12), fg='white')
         self.lblChat.pack(padx=20,pady=5)
 
-        self.txtHistorico = tkinter.scrolledtext.ScrolledText(self.win, bg='#363636', fg='#DCDCDC')
+        self.txtHistorico = tkinter.scrolledtext.ScrolledText(self.win, bg='#363636', fg='white')
         self.txtHistorico.pack(padx=20,pady=5)
         self.txtHistorico.config(state='disabled')
 
@@ -45,7 +45,7 @@ class Cliente:
         self.lblMensagem.config(font=('Arial',12), fg='white')
         self.lblMensagem.pack(padx=20,pady=5)
 
-        self.txtMensagem = tkinter.Text(self.win, height=3, bg='#363636', fg='#DCDCDC')
+        self.txtMensagem = tkinter.Text(self.win, height=3, bg='#363636', fg='white')
         self.txtMensagem.pack(padx=20, pady=5)
 
         self.btnEnviar = tkinter.Button(self.win, text='Enviar', bg='#1C1C1C', fg='white', command=self.write)
