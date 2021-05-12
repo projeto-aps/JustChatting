@@ -40,7 +40,7 @@ class layout:
         eventoLogin, valoresLogin = self.login.read()
         if eventoLogin == "EnviarLogin":
             return valoresLogin['nick']
-        login.close()
+        self.login.close()
 
     def enviar_mensagem(self, valores):
         return valores['mensagem']

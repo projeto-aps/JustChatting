@@ -31,26 +31,26 @@ class Cliente:
 
     def gui_loop(self):
         self.win = tkinter.Tk()
-        self.win.configure(bg='lightgray')
+        self.win.configure(bg='#1C1C1C')
 
-        self.chat_label = tkinter.Label(self.win, text='Chat:', bg='lightgray')
-        self.chat_label.config(font=('Arial',12))
-        self.chat_label.pack(padx=20,pady=5)
+        self.lblChat = tkinter.Label(self.win, text='Chat:', bg='#1C1C1C')
+        self.lblChat.config(font=('Arial',12), fg='white')
+        self.lblChat.pack(padx=20,pady=5)
 
-        self.text_area = tkinter.scrolledtext.ScrolledText(self.win)
-        self.text_area.pack(padx=20,pady=5)
-        self.text_area.config(state='disabled')
+        self.txtHistorico = tkinter.scrolledtext.ScrolledText(self.win, bg='#363636', fg='#DCDCDC')
+        self.txtHistorico.pack(padx=20,pady=5)
+        self.txtHistorico.config(state='disabled')
 
-        self.msg_label = tkinter.Label(self.win, text='Menssagem:', bg='lightgray')
-        self.msg_label.config(font=('Arial',12))
-        self.msg_label.pack(padx=20,pady=5)
+        self.lblMensagem = tkinter.Label(self.win, text='Menssagem:', bg='#1C1C1C')
+        self.lblMensagem.config(font=('Arial',12), fg='white')
+        self.lblMensagem.pack(padx=20,pady=5)
 
-        self.input_area = tkinter.Text(self.win, height=3)
-        self.input_area.pack(padx=20, pady=5)
+        self.txtMensagem = tkinter.Text(self.win, height=3, bg='#363636', fg='#DCDCDC')
+        self.txtMensagem.pack(padx=20, pady=5)
 
-        self.send_button = tkinter.Button(self.win, text='Enviar', command=self.write)
-        self.send_button.config(font=('Arial',12))
-        self.send_button.pack(padx=20,pady=5)
+        self.btnEnviar = tkinter.Button(self.win, text='Enviar', bg='#1C1C1C', fg='white', command=self.write)
+        self.btnEnviar.config(font=('Arial',12))
+        self.btnEnviar.pack(padx=20,pady=5)
 
         self.gui_done = True
         self.win.protocol('WM_DELETE_WINDOW',self.stop)
@@ -58,9 +58,9 @@ class Cliente:
         self.win.mainloop()
 
     def write(self):
-        mensagem = f"{self.nickname}: {self.input_area.get('1.0','end')}"
+        mensagem = f"{self.nickname}: {self.txtMensagem.get('1.0','end')}"
         self.sock.send(mensagem.encode('utf-8'))
-        self.input_area.delete('1.0','end')
+        self.txtMensagem.delete('1.0','end')
 
     def stop(self):
         self.running = False
@@ -76,11 +76,10 @@ class Cliente:
                     self.sock.send(self.nickname.encode('utf-8'))
                 else:
                     if self.gui_done:
-                        
-                        self.text_area.config(state='normal')
-                        self.text_area.insert('end',mensagem)
-                        self.text_area.yview('end')
-                        self.text_area.config(state='disabled')
+                        self.txtHistorico.config(state='normal')
+                        self.txtHistorico.insert('end',mensagem)
+                        self.txtHistorico.yview('end')
+                        self.txtHistorico.config(state='disabled')
             except ConnectionAbortedError:
                 break
             except:
