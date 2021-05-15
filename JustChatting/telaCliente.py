@@ -4,10 +4,10 @@ import tkinter
 import tkinter.scrolledtext
 from tkinter import simpledialog
 
-# host = input('Insira o IP: ')
-# port = 25143
-host = 'localhost'
+host = input('Insira o IP: ')
 port = 3001
+# host = 'localhost'
+# port = 3001
 
 class Cliente:
     def __init__(self, host, port):
